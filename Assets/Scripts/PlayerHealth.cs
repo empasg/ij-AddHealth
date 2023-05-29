@@ -26,9 +26,22 @@ public class PlayerHealth : MonoBehaviour
         _maxHealth = _health;
     }
 
-    public void AddHealth(float bonusHealth)
+    public void TakeDamage(float damage)
     {
-        _health += bonusHealth;
+        if (_health - damage < 0)
+            _health = 0;
+        else
+            _health -= damage;
+
+        _onHealthChange.Invoke();
+    }
+
+    public void Heal(float amount)
+    {
+        if (_health + amount > _maxHealth)
+            _health = _maxHealth;
+        else
+            _health += amount;
 
         _onHealthChange.Invoke();
     }

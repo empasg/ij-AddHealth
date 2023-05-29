@@ -19,7 +19,12 @@ public class PlayerHealthView : MonoBehaviour
         _playerHealth.OnHealthChange += Render;
     }
 
-    public void Render()
+    private void OnDisable()
+    {
+        _playerHealth.OnHealthChange -= Render;
+    }
+
+    private void Render()
     {
         if (_healthChangeCoroutine != null)
             StopCoroutine(_healthChangeCoroutine);
@@ -29,7 +34,7 @@ public class PlayerHealthView : MonoBehaviour
 
     private IEnumerator ChangeSliderValue()
     {
-        while(_sliderLerpTime / _healthChangeTime < 1 )
+        while( ( _playerHealth.Health / _playerHealth.MaxHealth ).ToString("F3") != _healthSlider.value.ToString("F3"))
         {
             _healthSlider.value = Mathf.Lerp(_lastHealth, _playerHealth.Health, _sliderLerpTime / _healthChangeTime) / _playerHealth.MaxHealth;
             _sliderLerpTime += Time.deltaTime;
