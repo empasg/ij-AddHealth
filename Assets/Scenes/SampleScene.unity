@@ -452,8 +452,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5f44050368ef824dbb39d400691e0bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startHealth: 123
-  _onHealthChange:
+  _maxHealth: 138
+  _healthChange:
     m_PersistentCalls:
       m_Calls: []
 --- !u!65 &909090502
@@ -1232,5 +1232,9 @@ PrefabInstance:
       propertyPath: _playerHealth
       value: 
       objectReference: {fileID: 909090501}
+    - target: {fileID: 9174259576142821528, guid: 507a3c4500b88c7448d17547576ff5b6, type: 3}
+      propertyPath: _healthChangeTime
+      value: 0.36
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 507a3c4500b88c7448d17547576ff5b6, type: 3}

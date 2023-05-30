@@ -8,9 +8,9 @@ public class PlayerHealthView : MonoBehaviour
     [SerializeField] private Slider _healthSlider;
     [SerializeField][Min(0.001f)] private float _healthChangeTime;
 
-    private float _lastHealth;
+    private float _lastSliderValue;
     private float _sliderLerpTime;
-    private Coroutine _healthChangeCoroutine;
+    private Coroutine _changeSliderValue;
 
     private void OnEnable()
     {
@@ -24,23 +24,25 @@ public class PlayerHealthView : MonoBehaviour
 
     private void OnHealthChange()
     {
-        if (_healthChangeCoroutine != null)
-            StopCoroutine(_healthChangeCoroutine);
+        if (_changeSliderValue != null)
+            StopCoroutine(_changeSliderValue);
 
-        _healthChangeCoroutine = StartCoroutine(ChangeSliderValue());
+        _changeSliderValue = StartCoroutine(ChangeSliderValue());
     }
 
     private IEnumerator ChangeSliderValue()
     {
-        while( ( _playerHealth.Health / _playerHealth.MaxHealth ).ToString("F3") != _healthSlider.value.ToString("F3") )
+        _lastSliderValue = _healthSlider.value;
+        _sliderLerpTime = 0;
+
+        while ( ( _playerHealth.Health / _playerHealth.MaxHealth ).ToString("F4") != _healthSlider.value.ToString("F4") )
         {
-            _healthSlider.value = Mathf.Lerp(_lastHealth, _playerHealth.Health, _sliderLerpTime / _healthChangeTime) / _playerHealth.MaxHealth;
+            _healthSlider.value = Mathf.Lerp(_lastSliderValue, _playerHealth.Health / _playerHealth.MaxHealth, _sliderLerpTime / _healthChangeTime);
             _sliderLerpTime += Time.deltaTime;
 
             yield return null;
         }
 
-        _sliderLerpTime = 0;
-        _lastHealth = _playerHealth.Health;
+        _changeSliderValue = null;
     }
 }
