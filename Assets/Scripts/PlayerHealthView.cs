@@ -35,7 +35,7 @@ public class PlayerHealthView : MonoBehaviour
         _lastSliderValue = _healthSlider.value;
         _sliderLerpTime = 0;
 
-        while ( ( _playerHealth.Health / _playerHealth.MaxHealth ).ToString("F4") != _healthSlider.value.ToString("F4") )
+        while (_lastSliderValue - ( _playerHealth.Health / _playerHealth.MaxHealth ) > float.MinValue)
         {
             _healthSlider.value = Mathf.Lerp(_lastSliderValue, _playerHealth.Health / _playerHealth.MaxHealth, _sliderLerpTime / _healthChangeTime);
             _sliderLerpTime += Time.deltaTime;
