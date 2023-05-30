@@ -1224,18 +1224,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7866836085588953711, guid: 507a3c4500b88c7448d17547576ff5b6, type: 3}
-      propertyPath: m_Value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866836085588953711, guid: 507a3c4500b88c7448d17547576ff5b6, type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7866836085950983223, guid: 507a3c4500b88c7448d17547576ff5b6, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7866836085950983223, guid: 507a3c4500b88c7448d17547576ff5b6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
